@@ -14,9 +14,9 @@ function isPolindrom(word){
     lowerCaseWord[i] === lowerCaseWord[lowerCaseWord.length - 1 - i] ? countTrue++ : countTrue = 0;
   }
   if (countTrue === Math.floor(lowerCaseWord.length / 2)) {
-    return console.log(`Значение "${word}" является палиндромом`);
+    return true;
   }
-  return console.log(`Значение "${word}" НЕ является палиндромом`);
+  return false;
 }
 // для выполнения функции раскоментируйте, пожалуйста, строчку ниже и передайте аргумент в функцию.
 // isPolindrom('Лёша на полке клопа нашёл ');
@@ -42,9 +42,9 @@ function getNumber(someSimbles){
   }
   // eslint-disable-next-line eqeqeq
   if (Number(numberRow) * 0 === 0 && numberRow != '') {
-    return console.log(Number(numberRow));
+    return Number(numberRow);
   }
-  return console.log(NaN);
+  return NaN;
 }
 // для выполнения функции раскоментируйте, пожалуйста, строчку ниже и передайте аргумент в функцию.
 // getNumber('klю . 2 4 ж!"№;%6%6:7*2?*(ous1');
@@ -73,13 +73,13 @@ function setString(sorce, lengthPhrase, addPhrase){
     }
     const remains = lengthPhrase - sorce.length;
     sorce = addPhrase.slice(0, remains) + sorce;
-    return console.log(String(sorce));
+    return String(sorce);
   } else if (sorce.length < lengthPhrase) {
     const countAddSimble = lengthPhrase - sorce.length;
     sorce = addPhrase.slice(0, countAddSimble) + sorce;
-    return console.log(String(sorce));
+    return String(sorce);
   } else {
-    return console.log(String(sorce));
+    return String(sorce);
   }
 }
 // для выполнения функции раскоментируйте, пожалуйста, строчку ниже и передайте аргумент в функцию.
@@ -94,7 +94,7 @@ function setString(sorce, lengthPhrase, addPhrase){
 
 function comparisonLength (chekedString, number){
   const i = chekedString.length < number;
-  return console.log(i);
+  return i;
 }
 // для выполнения функции раскоментируйте, пожалуйста, строчку ниже и передайте аргумент в функцию.
 // comparisonLength('проверяемая строка', 10);
@@ -107,12 +107,13 @@ function random (beginningRange, endRange, qtyAfterPoint){
   let i;
   if (endRange - beginningRange > 0) {
     i = beginningRange + Math.random() * (endRange - beginningRange);
-    return console.log(i.toFixed(qtyAfterPoint));
+    return i.toFixed(qtyAfterPoint);
   } else if (beginningRange - endRange > 0){
     i = endRange + Math.random() * (beginningRange - endRange);
-    return console.log(`Вероятно значения "от" и "до" перепутаны местами. Если это так, то значение = ${i.toFixed(qtyAfterPoint)}. Если нет, то, пожалуйста, укажите верные данные.`);
+    return i;
   }
-  return console.log(NaN);
+  return NaN;
+
 }
 // для выполнения функции раскоментируйте, пожалуйста, строчку ниже и передайте аргумент в функцию.
 // random(1.5, 1.25, 7);
