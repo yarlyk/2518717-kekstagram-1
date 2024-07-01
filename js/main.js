@@ -1,3 +1,5 @@
+// Задание по Кекстаграм
+// ================================================================================
 const getRandomInteger = (beginningRange, endRange, qtyAfterPoint = 0) => {
   let i;
   if (endRange - beginningRange > 0) {
@@ -24,7 +26,7 @@ const textComments = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
-nameAuthors = [
+const nameAuthors = [
   'Артём',
   'Гена',
   'Чебурашка',
@@ -65,3 +67,93 @@ const descriptionPhotos = () => ({
     name: getRandomArrayElement(nameAuthors),
   }
 });
+// console.log(descriptionPhotos());
+
+// Задание по Кексобукинг
+// ================================================================================
+
+const createUnicUser = createUnicValue(1, 10);
+
+const typeLocation = [
+  'palace',
+  'flat',
+  'house',
+  'bungalow',
+  'hotel',
+];
+const timeCheck = [
+  '12:00',
+  '13:00',
+  '14:00',
+];
+const typeFeatures = [
+  'wifi',
+  'dishwasher',
+  'parking',
+  'washer',
+  'elevator',
+  'conditioner',
+];
+
+function getFuteres(Array) {
+  const previousValues = [];
+  const lengthArray = getRandomInteger(1, Array.length - 1);
+  return function (){
+    let currentValue = getRandomInteger(1, lengthArray - 1);
+    while (previousValues.includes(currentValue) || previousValues.length >= lengthArray) {
+      currentValue = getRandomInteger(0, lengthArray);
+    }
+    previousValues.push(currentValue);
+    return previousValues;
+  };
+}
+// console.log(getFuteres(typeFeatures));
+
+const descriptionRooms = [
+  'Уютный номер с прекрасным видом',
+  'Просторный, светлый номер',
+  'Комфорт для гостей - наш приоритет',
+  'Прекрасный номер для полноценного отдыха',
+  'Побывав здесь, Вы обязательно вернётесь!',
+];
+const photoRooms = [
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
+];
+const titleRooms = [
+  'Лучший номер10',
+  'Лучшее сочетание "Цена-качество"',
+  'Наш дивиз - "Чистота и забота!"',
+  'Ваш отдых - наше призвание!',
+  'Три номера по цене двух!',
+  'У нас скучно не будет!',
+];
+
+const fullDescriptionRooms = () => ({
+  author: {
+    avatar: `img/avatars/user${createUnicUser() < 10 ? `0${createUnicUser()}` : createUnicUser()}}.png`,
+  },//Перед однозначными числами ставится 0. Например, 01, 02...10 - (НЕ РЕШИЛ).
+  offer: {
+    title: getRandomArrayElement(titleRooms),
+    address: {
+      lat: getRandomInteger(35.65000,35.70000, 5),//число с плавающей точкой — широта, случайное значение от 35.65000 до 35.70000
+      lng: getRandomInteger(139.70000,139.80000, 5),//число с плавающей точкой — долгота, случайное значение от 139.70000 до 139.80000
+    },
+    price: getRandomInteger(1000,10000),
+    type: getRandomArrayElement(typeLocation),//одно из пяти фиксированных значений: palace, flat, house, bungalow или hotel
+    rooms: getRandomInteger(1,5),
+    guests: getRandomInteger(1,10),
+    checkin:getRandomArrayElement(timeCheck),
+    checkout:getRandomArrayElement(timeCheck),
+    features: [getRandomArrayElement(typeFeatures)],//???????? массив строк — массив случайной длины из значений: wifi, dishwasher, parking, washer, elevator, conditioner. Значения не должны повторяться.
+    description: getRandomArrayElement(descriptionRooms),
+    photos: [photoRooms],//?????? массив случайной длины из значений
+    location: {
+      lat: getRandomInteger(35.65000,35.70000, 5),//число с плавающей точкой — широта, случайное значение от 35.65000 до 35.70000
+      lng: getRandomInteger(139.70000,139.80000, 5),//число с плавающей точкой — долгота, случайное значение от 139.70000 до 139.80000
+    },
+  }
+});
+// console.log(fullDescriptionRooms());
+
