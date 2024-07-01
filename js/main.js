@@ -1,6 +1,3 @@
-let beginningRange;
-let endRange;
-
 const getRandomInteger = (beginningRange, endRange, qtyAfterPoint = 0) => {
   let i;
   if (endRange - beginningRange > 0) {
@@ -35,37 +32,36 @@ nameAuthors = [
   'Просто босс',
 ];
 
+function createUnicValue (beginningRange, endRange, qtyAfterPoint = 0){
+  const previousValues = [];
+  return function (){
+    let currentValue = getRandomInteger (beginningRange, endRange, qtyAfterPoint = 0);
+    if (previousValues.length >= (endRange - beginningRange + 1)) {
+      console.error('Перебраны все числа из диапазона от ' + beginningRange + ' до ' + endRange);
+      return null;
+    }
+    while (previousValues.includes(currentValue)) {
+      currentValue = getRandomInteger(beginningRange, endRange, qtyAfterPoint = 0);
+    }
+    previousValues.push(currentValue);
+    return currentValue;
+  };
+}
+
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
+const createUnicId = createUnicValue(1, 25);
+const createUnicIdComment = createUnicValue(1, 10000000);
+
 const descriptionPhotos = () => ({
-  id: getRandomInteger(1, 25),
-  // () => {
-  //   beginningRange = 1;
-  //   endRange = 25;
-  //   return getRandomInteger();
-  // },
-  //  () => {
-  //   const previousValuesId = [];
-  //   return function() {
-  //     let newId = getRandomInteger(1,25);
-
-  //   }
-  //   if (previousValuesId.includes(newId)) {
-
-  //   }
-  //   previousValues.push(newId);
-  //   return newId;
-  // } idDescriptionPhotos.includes(getRandomInteger(1,25)) ? ,
-  // url: `photos/${getRandomInteger(1,25)}.jpg`,
+  id: createUnicId(),
+  url: `photos/${createUnicId()}.jpg`,
   description: getRandomArrayElement(descriptionPhoto),
-  likes: getRandomInteger(15,200),//число — количество лайков, поставленных фотографии. Случайное число от 15 до 200.
+  likes: getRandomInteger(15,200),
   comments: {
-    id: getRandomInteger(1,2000),
+    id: createUnicIdComment(),
     avatar: `img/avatar-${getRandomInteger(1,6)}.svg`,
     message: getRandomArrayElement(textComments),
     name: getRandomArrayElement(nameAuthors),
   }
 });
-console.log(descriptionPhotos());
-
-// console.log(getRandomArrayElement(textComments));
