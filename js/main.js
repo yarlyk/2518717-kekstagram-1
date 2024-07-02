@@ -67,12 +67,10 @@ const descriptionPhotos = () => ({
     name: getRandomArrayElement(nameAuthors),
   }
 });
-// console.log(descriptionPhotos());
+descriptionPhotos();
 
 // Задание по Кексобукинг
 // ================================================================================
-
-const createUnicUser = createUnicValue(1, 10);
 
 const typeLocation = [
   'palace',
@@ -95,19 +93,18 @@ const typeFeatures = [
   'conditioner',
 ];
 
-function getFuteres(Array) {
+function getRandomArray(Array) {
   const previousValues = [];
-  const lengthArray = getRandomInteger(1, Array.length - 1);
-  return function (){
-    let currentValue = getRandomInteger(1, lengthArray - 1);
+  const lengthArray = getRandomInteger(1, Array.length);
+  let currentValue = Array[getRandomInteger(0, Array.length - 1)];
+  for (let index = 0; index < lengthArray; index++) {
     while (previousValues.includes(currentValue) || previousValues.length >= lengthArray) {
-      currentValue = getRandomInteger(0, lengthArray);
+      currentValue = Array[getRandomInteger(0, Array.length - 1)];
     }
     previousValues.push(currentValue);
-    return previousValues;
-  };
+  }
+  return previousValues;
 }
-// console.log(getFuteres(typeFeatures));
 
 const descriptionRooms = [
   'Уютный номер с прекрасным видом',
@@ -130,30 +127,38 @@ const titleRooms = [
   'У нас скучно не будет!',
 ];
 
+const createUnicUser = () => {
+  const i = getRandomInteger(1, 10);
+  if (i < 10) {
+    return `0${i}`;
+  }
+  return i;
+};
+
 const fullDescriptionRooms = () => ({
   author: {
-    avatar: `img/avatars/user${createUnicUser() < 10 ? `0${createUnicUser()}` : createUnicUser()}}.png`,
-  },//Перед однозначными числами ставится 0. Например, 01, 02...10 - (НЕ РЕШИЛ).
+    avatar: `img/avatars/user${createUnicUser()}.png`,
+  },
   offer: {
     title: getRandomArrayElement(titleRooms),
     address: {
-      lat: getRandomInteger(35.65000,35.70000, 5),//число с плавающей точкой — широта, случайное значение от 35.65000 до 35.70000
-      lng: getRandomInteger(139.70000,139.80000, 5),//число с плавающей точкой — долгота, случайное значение от 139.70000 до 139.80000
+      lat: getRandomInteger(35.65000,35.70000, 5),
+      lng: getRandomInteger(139.70000,139.80000, 5),
     },
     price: getRandomInteger(1000,10000),
-    type: getRandomArrayElement(typeLocation),//одно из пяти фиксированных значений: palace, flat, house, bungalow или hotel
+    type: getRandomArrayElement(typeLocation),
     rooms: getRandomInteger(1,5),
     guests: getRandomInteger(1,10),
-    checkin:getRandomArrayElement(timeCheck),
-    checkout:getRandomArrayElement(timeCheck),
-    features: [getRandomArrayElement(typeFeatures)],//???????? массив строк — массив случайной длины из значений: wifi, dishwasher, parking, washer, elevator, conditioner. Значения не должны повторяться.
+    checkin: getRandomArrayElement(timeCheck),
+    checkout: getRandomArrayElement(timeCheck),
+    features: getRandomArray(typeFeatures),
     description: getRandomArrayElement(descriptionRooms),
-    photos: [photoRooms],//?????? массив случайной длины из значений
+    photos: getRandomArray(photoRooms),
     location: {
-      lat: getRandomInteger(35.65000,35.70000, 5),//число с плавающей точкой — широта, случайное значение от 35.65000 до 35.70000
-      lng: getRandomInteger(139.70000,139.80000, 5),//число с плавающей точкой — долгота, случайное значение от 139.70000 до 139.80000
+      lat: getRandomInteger(35.65000,35.70000, 5),
+      lng: getRandomInteger(139.70000,139.80000, 5),
     },
   }
 });
-// console.log(fullDescriptionRooms());
+fullDescriptionRooms();
 
