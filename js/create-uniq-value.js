@@ -1,6 +1,6 @@
 import { getRandomInteger } from './get-random-array-element.js';
 
-function createUnicValue(beginningRange, endRange) {
+function createUniqValue(beginningRange, endRange) {
   const previousValues = [];
   return function () {
     let currentValue = getRandomInteger(beginningRange, endRange);
@@ -15,4 +15,4 @@ function createUnicValue(beginningRange, endRange) {
   };
 }
 
-export { createUnicValue };
+export { createUniqValue };

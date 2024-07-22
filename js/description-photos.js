@@ -1,15 +1,15 @@
 import { getRandomInteger } from './get-random-array-element.js';
 import { getRandomArrayElement } from './get-random-array-element.js';
 import { DESCRIPTION_PHOTOS } from './main.js';
-import { createUnicValue } from './create-unic-value.js';
+import { createUniqValue } from './create-uniq-value.js';
 import { TEXT_COMMENTS } from './main.js';
 import { NAME_AUTHORS } from './main.js';
 
-const createUnicId = createUnicValue(1, 25);
-const createUnicIdComment = createUnicValue(1, 10000000);
+const createUniqId = createUniqValue(1, 25);
+const createUnicIdComment = createUniqValue(1, 10000000);
 const descriptionPhotos = () => ({
-  id: createUnicId(),
-  url: `photos/${createUnicId()}.jpg`,
+  id: createUniqId(),
+  url: `photos/${createUniqId()}.jpg`,
   description: getRandomArrayElement(DESCRIPTION_PHOTOS),
   likes: getRandomInteger(15, 200),
   comments: {

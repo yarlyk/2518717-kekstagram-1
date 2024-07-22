@@ -1,7 +1,7 @@
 import { getRandomInteger } from './get-random-array-element.js';
 import { getRandomArrayElement } from './get-random-array-element.js';
 import { getRandomArray } from './get-random-array.js';
-import { CreateUnicUser } from './create-unic-user.js';
+import { CreateUniqUser } from './create-uniq-user.js';
 import { TITLE_ROOMS } from './main.js';
 import { TYPE_LOCATION } from './main.js';
 import { TIME_CHECK } from './main.js';
@@ -11,7 +11,7 @@ import { PHOTO_ROOMS } from './main.js';
 
 const fullDescriptionRooms = () => ({
   author: {
-    avatar: `img/avatars/user${CreateUnicUser()}.png`,
+    avatar: `img/avatars/user${CreateUniqUser()}.png`,
   },
   offer: {
     title: getRandomArrayElement(TITLE_ROOMS),
