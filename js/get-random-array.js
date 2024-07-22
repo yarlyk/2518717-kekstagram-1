@@ -1,15 +1,15 @@
 import { getRandomInteger } from './get-random-array-element.js';
 
-function getRandomArray(Array) {
+function getRandomArray(array) {
   const previousValues = [];
-  const lengthArray = getRandomInteger(1, Array.length);
-  let currentValue = Array[getRandomInteger(0, Array.length - 1)];
+  const lengthArray = getRandomInteger(1, array.length);
+  let currentValue = array[getRandomInteger(0, array.length - 1)];
   for (let index = 0; index < lengthArray; index++) {
     while (
       previousValues.includes(currentValue) ||
       previousValues.length >= lengthArray
     ) {
-      currentValue = Array[getRandomInteger(0, Array.length - 1)];
+      currentValue = array[getRandomInteger(0, array.length - 1)];
     }
     previousValues.push(currentValue);
   }
